@@ -70,7 +70,11 @@ export function SignIn() {
             <Text style={styles.forgotPasswordLabel}>Esqueci minha senha</Text>
           </TouchableOpacity>
 
-          <Button title="Entrar" onPress={handleSignIn} isLoading={isLogging} />
+          <Button
+            title="Acessar"
+            onPress={handleSignIn}
+            isLoading={isLogging}
+          />
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
