@@ -1,4 +1,18 @@
 {
+  "expo": {
+    "name": "pizzapro",
+    "slug": "pizzapro",
+    "version": "1.0.0",
+    "assetBundlePatterns": ["**/*"],
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "When using the camera to take a photo"
+        }
+      ]
+    ]
+  },
   "name": "pizzapro",
   "displayName": "pizzapro"
 }

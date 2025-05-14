@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "720583956152",
+    "project_id": "pizzapro-7e584",
+    "storage_bucket": "pizzapro-7e584.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720583956152:android:4c6f3a4147a3b25427464d",
+        "android_client_info": {
+          "package_name": "com.pizzapro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPvuCTVr-4GdrfnHPDpWoIuVFjit-_e6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
