@@ -18,7 +18,7 @@ export function Button({title, isLoading = false, onPress, ...rest}: Props) {
   return (
     <TouchableOpacity
       style={styles.container}
-      activeOpacity={0.7}
+      //activeOpacity={0.7}
       onPress={onPress}
       disabled={isLoading}
       {...rest}>
