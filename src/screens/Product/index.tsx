@@ -47,7 +47,6 @@ export function Product() {
   const navigation = useNavigation();
   const route = useRoute();
   const {id} = route.params as ProductNavigationProps;
-  // console.log('Id do produto selecionado: ', id);
 
   async function handlePickImage() {
     try {
@@ -87,13 +86,11 @@ export function Product() {
       const fileName = new Date().getTime();
       const reference = storage().ref(`/pizzas/${fileName}.png`);
 
-      // Corrigir URI para Android
       let imageUri = image;
       if (Platform.OS === 'android' && imageUri.startsWith('content://')) {
         imageUri = await getRealPathFromURI(imageUri);
       }
 
-      // await reference.putFile(imageUri);
       const pathToFile = image.startsWith('file://')
         ? image
         : `file://${image}`;
@@ -123,12 +120,41 @@ export function Product() {
     } catch (error) {}
   }
 
-  // setName('');
-  // setDescription('');
-  // setPriceSizeP('');
-  // setPriceSizeM('');
-  // setPriceSizeG('');
-  // setImage('');
+  async function handleUpdate() {
+    if (!name.trim())
+      return Alert.alert('Atualização', 'Informe o nome da pizza.');
+    if (!description.trim())
+      return Alert.alert('Atualização', 'Informe a descrição.');
+    if (!priceSizeP || !priceSizeM || !priceSizeG)
+      return Alert.alert(
+        'Atualização',
+        'Informe o preço de todos os tamanhos.',
+      );
+
+    setIsLoading(true);
+
+    try {
+      await firestore()
+        .collection('pizzas')
+        .doc(id)
+        .update({
+          name,
+          name_insensitive: name.toLowerCase().trim(),
+          description,
+          price_sizes: {
+            p: priceSizeP,
+            m: priceSizeM,
+            g: priceSizeG,
+          },
+        });
+
+      Alert.alert('Atualização', 'Pizza atualizada com sucesso.');
+      navigation.navigate('home');
+    } catch (error) {
+      setIsLoading(false);
+      Alert.alert('Atualização', 'Erro ao atualizar.');
+    }
+  }
 
   function handleGoBack() {
     navigation.goBack();
@@ -172,16 +198,15 @@ export function Product() {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Header */}
         <View style={styles.header}>
           <ButtonBack onPress={handleGoBack} />
-          <Text style={styles.title}>Cadastrar</Text>
+          <Text style={styles.title}>
+            {id ? 'Editar Pizza' : 'Cadastrar Pizza'}
+          </Text>
           {id ? (
             <TouchableOpacity
               onPress={handleDelete}
-              style={styles.deleteButton}
-              // onPress={() => setImage('')}
-            >
+              style={styles.deleteButton}>
               <Text style={styles.deleteButtonText}>Deletar</Text>
             </TouchableOpacity>
           ) : (
@@ -189,7 +214,6 @@ export function Product() {
           )}
         </View>
 
-        {/* Upload */}
         <View style={styles.uploadContainer}>
           <Photo uri={image} />
           {!id && (
@@ -201,7 +225,6 @@ export function Product() {
           )}
         </View>
 
-        {/* Formulário */}
         <View style={styles.form}>
           <Text style={styles.label}>Nome</Text>
           <TextInput
@@ -252,7 +275,13 @@ export function Product() {
             />
           </View>
 
-          {!id && (
+          {id ? (
+            <Button
+              title="Salvar Alterações"
+              isLoading={isLoading}
+              onPress={handleUpdate}
+            />
+          ) : (
             <Button
               title="Cadastrar Pizza"
               isLoading={isLoading}

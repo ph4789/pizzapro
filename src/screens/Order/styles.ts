@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
     backgroundColor: '#F3F3F3', // cor de fundo desejada
   },
   header: {
-    backgroundColor: '#29292E',
+    backgroundColor: '#b83341',
     paddingTop: getStatusBarHeight() + 34,
     paddingHorizontal: 24,
   },
