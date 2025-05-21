@@ -1,12 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  Alert,
-  FlatList,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Alert, FlatList} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Search} from '../../components/Search';
 import {ProductCard, ProductProps} from '../../components/ProductCard';
@@ -15,6 +8,7 @@ import {styles} from './styles';
 import firestore from '@react-native-firebase/firestore';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {useAuth} from '../../hooks/auth';
+
 export function Home() {
   const [pizzas, setPizzas] = useState<ProductProps[]>([]);
   const [search, setSearch] = useState('');
@@ -73,7 +67,9 @@ export function Home() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.greeting}>
-          <Text style={styles.greetingText}> 😅 Olá!</Text>
+          <Text style={styles.greetingText}>
+            {user?.isAdmin ? '😎 Olá, admin!' : '🧑‍🍳 Olá, garçom!'}
+          </Text>
         </View>
         <TouchableOpacity onPress={signOut}>
           <Ionicons name="exit-outline" size={24} color="#fff" />
@@ -105,14 +101,6 @@ export function Home() {
         }}
       />
 
-      {/* <ProductCard
-        data={{
-          id: '1',
-          name: 'pizza',
-          photo_url: '',
-          description: 'Pizza Calabresa',
-        }}
-      /> */}
       {user?.isAdmin && (
         <TouchableOpacity style={styles.button} onPress={handleAdd}>
           <Text style={styles.text}>Cadastra Pizza</Text>

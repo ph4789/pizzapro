@@ -4,6 +4,13 @@
     "slug": "pizzapro",
     "version": "1.0.0",
     "assetBundlePatterns": ["**/*"],
+    "icon": "./assets/icon.png",
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
     "plugins": [
       [
         "expo-image-picker",
