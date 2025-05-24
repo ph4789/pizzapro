@@ -283,7 +283,7 @@ export function Product() {
             />
           ) : (
             <Button
-              title="Cadastrar Pizza"
+              title="Cadastrar"
               isLoading={isLoading}
               onPress={handleAdd}
             />

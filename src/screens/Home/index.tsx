@@ -84,7 +84,7 @@ export function Home() {
 
       <View style={styles.MenuHeader}>
         <Text style={styles.Title}>Cardápio</Text>
-        <Text style={styles.MenuItemNumber}>{pizzas.length} pizzas</Text>
+        <Text style={styles.MenuItemNumber}>{pizzas.length} produtos</Text>
       </View>
 
       <FlatList
@@ -103,7 +103,7 @@ export function Home() {
 
       {user?.isAdmin && (
         <TouchableOpacity style={styles.button} onPress={handleAdd}>
-          <Text style={styles.text}>Cadastra Pizza</Text>
+          <Text style={styles.text}>Cadastrar Produto</Text>
         </TouchableOpacity>
       )}
     </View>

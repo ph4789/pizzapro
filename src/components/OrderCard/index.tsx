@@ -64,7 +64,7 @@ export function OrderCard({index, data, ...rest}: Props) {
       {...rest}>
       <Image source={{uri: data.image}} style={styles.image} />
 
-      <Text style={styles.name}>Pizza Calabresa</Text>
+      <Text style={styles.name}>{data.pizza}</Text>
       <Text style={styles.description}>
         {data.table_number} ⋄ Qtd: {data.quantity}
       </Text>

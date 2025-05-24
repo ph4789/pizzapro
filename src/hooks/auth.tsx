@@ -50,7 +50,7 @@ function AuthProvider({children}: AuthProviderProps) {
           .get()
           .then(async profile => {
             const {name, isAdmin} = profile.data() as User;
-            if (profile.exists) {
+            if (Boolean(name)) {
               const userData = {
                 id: account.user.uid,
                 name,
